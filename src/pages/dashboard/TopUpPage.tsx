@@ -1,24 +1,19 @@
-// app/topup/page.tsx (if using App Router)
-
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import UserHeader from "@/components/dashboard/UserHeader";
-import { getBalance, postTopUp } from "@/lib/api/transaction";
+import { postTopUp } from "@/lib/api/transaction";
 import { toast } from "sonner";
 import { CreditCard } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function TopUpPage() {
-  const [balance, setBalance] = useState(0);
+  const navigation = useNavigate();
   const [amount, setAmount] = useState<number | "">("");
   const presetAmounts = [10000, 20000, 50000, 100000, 250000, 500000];
 
   const MIN_TOPUP = 10000;
   const MAX_TOPUP = 1000000;
-
-  useEffect(() => {
-    getBalance().then(setBalance);
-  }, []);
 
   const isValidAmount =
     typeof amount === "number" && amount >= MIN_TOPUP && amount <= MAX_TOPUP;
@@ -29,7 +24,7 @@ export default function TopUpPage() {
       await postTopUp({ top_up_amount: amount });
       toast.success("Top up berhasil");
       setAmount("");
-      getBalance().then(setBalance);
+      navigation("/dashboard");
     } catch (err) {
       toast.error("Top up gagal");
     }
@@ -37,7 +32,7 @@ export default function TopUpPage() {
 
   return (
     <div className="p-4 space-y-6">
-      <UserHeader balance={balance} />
+      <UserHeader />
 
       <div className="mb-12">
         <p className="text-lg font-semibold">Silahkan masukan</p>

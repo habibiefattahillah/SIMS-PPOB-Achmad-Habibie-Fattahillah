@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import UserHeader from "@/components/dashboard/UserHeader";
-import { getBalance, postTransaction } from "@/lib/api/transaction";
+import { postTransaction } from "@/lib/api/transaction";
 import { getServices } from "@/lib/api/information";
 import { toast } from "sonner";
 import type { Service } from "@/types/api";
@@ -11,11 +11,9 @@ export default function ServicePage() {
   const navigate = useNavigate();
 
   const { service_code } = useParams<{ service_code: string }>();
-  const [balance, setBalance] = useState(0);
   const [service, setService] = useState<Service | null>(null);
 
   useEffect(() => {
-    getBalance().then(setBalance);
     getServices().then((services) => {
       const found = services.find((s) => s.service_code === service_code);
       if (!found) {
@@ -34,7 +32,6 @@ export default function ServicePage() {
         service_code: service.service_code,
       });
       toast.success("Transaksi berhasil");
-      getBalance().then(setBalance);
       navigate(`/dashboard`);
     } catch (err) {
       toast.error("Transaksi gagal");
@@ -43,7 +40,7 @@ export default function ServicePage() {
 
   return (
     <div className="p-4 space-y-6">
-      <UserHeader balance={balance} />
+      <UserHeader />
 
       {service ? (
         <div className="space-y-4">

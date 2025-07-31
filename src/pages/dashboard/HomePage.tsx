@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState, AppDispatch } from "@/stores/store";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/stores/store";
 import { fetchBanners, fetchServices } from "@/stores/informationSlice";
 import { fetchBalance } from "@/stores/balanceSlice";
 

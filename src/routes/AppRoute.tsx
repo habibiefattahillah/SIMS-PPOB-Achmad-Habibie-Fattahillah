@@ -9,6 +9,8 @@ import type { ReactNode } from "react";
 import TopUpPage from "@/pages/dashboard/TopUpPage";
 import ServicePage from "@/pages/dashboard/ServicePage";
 import TransactionPage from "@/pages/dashboard/TransactionPage";
+import ProfilePage from "@/pages/dashboard/ProfilePage";
+import ProfileEditPage from "@/pages/dashboard/ProfileEditPage";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const token = useSelector((state: RootState) => state.auth.token);
@@ -33,6 +35,8 @@ export default function AppRoutes() {
         <Route path=":service_code" element={<ServicePage />} />
         <Route path="topup" element={<TopUpPage />} />
         <Route path="transaction" element={<TransactionPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="profile/update" element={<ProfileEditPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />

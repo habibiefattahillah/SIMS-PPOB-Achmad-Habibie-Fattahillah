@@ -43,7 +43,7 @@ export default function DashboardLayout() {
             Transaction
           </NavLink>
           <NavLink
-            to="/dashboard/akun"
+            to="/dashboard/profile"
             className={({ isActive }) =>
               isActive ? "text-red-500 font-semibold" : "text-gray-700"
             }

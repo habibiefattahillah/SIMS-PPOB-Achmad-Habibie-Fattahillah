@@ -21,7 +21,6 @@ export default function TransactionPage() {
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      // If we already have the data for this page, use it
       if (transactionsByPage[page]) {
         setCurrentTransactions(transactionsByPage[page]);
         setHasNextPage(transactionsByPage[page].length === LIMIT);
