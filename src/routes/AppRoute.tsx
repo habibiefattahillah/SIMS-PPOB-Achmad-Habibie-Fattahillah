@@ -8,6 +8,7 @@ import type { RootState } from "@/stores/store";
 import type { ReactNode } from "react";
 import TopUpPage from "@/pages/dashboard/TopUpPage";
 import ServicePage from "@/pages/dashboard/ServicePage";
+import TransactionPage from "@/pages/dashboard/TransactionPage";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const token = useSelector((state: RootState) => state.auth.token);
@@ -31,7 +32,7 @@ export default function AppRoutes() {
         <Route index element={<HomePage />} />
         <Route path=":service_code" element={<ServicePage />} />
         <Route path="topup" element={<TopUpPage />} />
-        {/* <Route path="transaction" element={<TransactionPage />} /> */}
+        <Route path="transaction" element={<TransactionPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />
