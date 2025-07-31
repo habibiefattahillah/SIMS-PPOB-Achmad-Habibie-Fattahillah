@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import UserHeader from "@/components/dashboard/UserHeader";
 import { postTopUp } from "@/lib/api/transaction";

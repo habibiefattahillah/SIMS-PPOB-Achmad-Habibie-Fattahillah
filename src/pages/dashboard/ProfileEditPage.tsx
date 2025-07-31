@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { updateProfile, getProfile } from "@/lib/api/profile";
+import { updateProfile } from "@/lib/api/profile";
 import ProfileForm from "@/components/dashboard/ProfileForm";
 import { useAuth } from "@/hooks/useAuth";
 

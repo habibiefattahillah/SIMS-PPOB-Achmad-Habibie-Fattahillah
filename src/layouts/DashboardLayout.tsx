@@ -1,16 +1,6 @@
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout } from "@/stores/authSlice";
+import { Outlet, NavLink } from "react-router-dom";
 
 export default function DashboardLayout() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
-
   return (
     <div className="min-h-screen flex flex-col">
       <header className="bg-white shadow flex items-center justify-between px-6 py-4">

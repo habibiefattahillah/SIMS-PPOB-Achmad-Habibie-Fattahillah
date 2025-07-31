@@ -39,8 +39,8 @@ export default function ProfileForm({
     if (selectedImage) {
       try {
         await updateProfileImage(selectedImage);
-        await fetchProfile(); // Refresh image and data
-        setSelectedImage(null); // Reset image state
+        await fetchProfile();
+        setSelectedImage(null);
       } catch (err) {
         console.error("Failed to upload profile image", err);
       }
