@@ -50,12 +50,6 @@ export default function DashboardLayout() {
           >
             Akun
           </NavLink>
-          <button
-            onClick={handleLogout}
-            className="text-gray-500 hover:text-red-600 transition"
-          >
-            Logout
-          </button>
         </nav>
       </header>
 

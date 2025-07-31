@@ -1,15 +1,24 @@
 import { useNavigate } from "react-router-dom";
+import { updateProfile, getProfile } from "@/lib/api/profile";
 import ProfileForm from "@/components/dashboard/ProfileForm";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function ProfileEditPage() {
   const navigate = useNavigate();
+  const { fetchProfile } = useAuth();
 
-  const handleSave = (data: { first_name: string; last_name: string }) => {
-    console.log("Saving updated profile:", data);
+  const handleSave = async (data: {
+    first_name: string;
+    last_name: string;
+  }) => {
+    try {
+      await updateProfile(data);
+      await fetchProfile();
 
-    // Optionally dispatch an updateUser API call here
-
-    navigate("/profile/update");
+      navigate("/dashboard/profile");
+    } catch (err) {
+      console.error("Failed to update profile", err);
+    }
   };
 
   return (

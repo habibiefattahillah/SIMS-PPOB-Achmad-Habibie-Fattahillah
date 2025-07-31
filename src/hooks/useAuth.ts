@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setAuth, setUser, logout } from "@/stores/authSlice";
+import { getProfile } from "@/lib/api/profile";
+
 import api from "@/lib/axios";
 
 export const useAuth = () => {
@@ -31,15 +33,18 @@ export const useAuth = () => {
   };
 
   const fetchProfile = async () => {
-    const res = await api.get("/profile");
-    if (res.data.status === 0) {
-      dispatch(setUser(res.data.data));
-    }
+    const res = await getProfile();
+    dispatch(setUser(res));
   };
 
   const logoutUser = () => {
     dispatch(logout());
   };
 
-  return { login, register, fetchProfile, logoutUser };
+  return {
+    login,
+    register,
+    fetchProfile,
+    logoutUser,
+  };
 };
