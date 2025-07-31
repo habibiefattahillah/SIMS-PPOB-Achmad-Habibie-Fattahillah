@@ -1,13 +1,11 @@
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import type { Banner } from "@/types/api";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/stores/store";
 
-interface Props {
-  banners: Banner[];
-}
-
-export default function BannerCarousel({ banners }: Props) {
+export default function BannerCarousel() {
+  const { banners } = useSelector((state: RootState) => state.information);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     banners.length > 0
       ? {

@@ -1,11 +1,10 @@
 import type { Service } from "@/types/api";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/stores/store";
 
-interface Props {
-  services: Service[];
-}
-
-export default function ServiceGrid({ services }: Props) {
+export default function ServiceGrid() {
+  const { services } = useSelector((state: RootState) => state.information);
   const navigate = useNavigate();
 
   const handleClick = (service: Service) => {

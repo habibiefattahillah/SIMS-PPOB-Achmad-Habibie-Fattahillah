@@ -1,29 +1,27 @@
-import { useEffect, useState } from "react";
-import { getBalance } from "@/lib/api/transaction";
-import { getBanners, getServices } from "@/lib/api/information";
-import type { Banner, Service } from "@/types/api";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "@/stores/store";
+import { fetchBanners, fetchServices } from "@/stores/informationSlice";
+import { fetchBalance } from "@/stores/balanceSlice";
+
 import UserHeader from "@/components/dashboard/UserHeader";
 import ServiceGrid from "@/components/dashboard/ServiceGrid";
 import BannerCarousel from "@/components/dashboard/BannerCarousel";
 
 export default function HomePage() {
-  const [balance, setBalance] = useState<number>(0);
-  const [services, setServices] = useState<Service[]>([]);
-  const [banners, setBanners] = useState<Banner[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    getBalance().then(setBalance);
-    getServices().then(setServices);
-    getBanners().then(setBanners);
-  }, []);
+    dispatch(fetchBalance());
+    dispatch(fetchServices());
+    dispatch(fetchBanners());
+  }, [dispatch]);
 
   return (
     <div className="p-4 space-y-6">
-      <UserHeader balance={balance} />
-
-      <ServiceGrid services={services} />
-
-      <BannerCarousel banners={banners} />
+      <UserHeader />
+      <ServiceGrid />
+      <BannerCarousel />
     </div>
   );
 }
