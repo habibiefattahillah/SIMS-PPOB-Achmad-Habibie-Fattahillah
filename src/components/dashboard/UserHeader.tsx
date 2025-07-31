@@ -10,7 +10,7 @@ export default function UserHeader() {
     <div className="flex w-full justify-between">
       <div className="flex-col items-center space-x-4 w-full">
         <img
-          src={user?.profile_image || "/src/assets/default-profile.png"}
+          src={user?.profile_image || "/public/default-profile.png"}
           alt="profile"
           className="w-12 h-12 rounded-full object-cover"
         />

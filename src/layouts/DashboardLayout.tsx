@@ -10,7 +10,7 @@ export default function DashboardLayout() {
             className="flex items-center space-x-2 font-semibold text-lg text-red-500"
             end
           >
-            <img src="/src/assets/Logo.png" alt="logo" className="h-6" />
+            <img src="/public/Logo.png" alt="logo" className="h-6" />
             <span>SIMS PPOB</span>
           </NavLink>
         </div>
