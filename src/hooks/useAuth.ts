@@ -9,6 +9,12 @@ export const useAuth = () => {
     const res = await api.post("/login", { email, password });
     if (res.data.status === 0) {
       dispatch(setAuth({ token: res.data.data.token }));
+
+      const profileRes = await api.get("/profile");
+      if (profileRes.data.status === 0) {
+        dispatch(setUser(profileRes.data.data));
+      }
+
       return true;
     }
     return false;

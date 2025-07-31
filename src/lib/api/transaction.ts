@@ -8,13 +8,11 @@ import type {
   TransactionHistoryResponse,
 } from "@/types/api";
 
-// GET /balance
 export const getBalance = async (): Promise<number> => {
   const res = await api.get<{ data: BalanceResponse }>("/balance");
   return res.data.data.balance;
 };
 
-// POST /topup
 export const postTopUp = async (
   payload: TopUpRequest
 ): Promise<TopUpResponse> => {
@@ -22,7 +20,6 @@ export const postTopUp = async (
   return res.data.data;
 };
 
-// POST /transaction
 export const postTransaction = async (
   payload: TransactionRequest
 ): Promise<TransactionResponse> => {
@@ -33,7 +30,6 @@ export const postTransaction = async (
   return res.data.data;
 };
 
-// GET /transaction/history?offset=0&limit=3
 export const getTransactionHistory = async (
   offset: number,
   limit: number
